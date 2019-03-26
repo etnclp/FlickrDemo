@@ -1,2 +1,3 @@
-# ecom-ios
-Ecom iOS Application
+# FlickrDemo
+
+A demo iOS application using Flickr API.
