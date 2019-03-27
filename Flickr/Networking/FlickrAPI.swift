@@ -8,10 +8,8 @@
 
 import Moya
 
-let request = MoyaProvider<FlickrAPI>()
-
 enum FlickrAPI {
-    case getRecentPhotos
+    case getRecentPhotos(page: Int)
 }
 
 extension FlickrAPI: TargetType {
@@ -55,8 +53,10 @@ extension FlickrAPI: TargetType {
             "nojsoncallback": 1
         ]
         switch self {
-        case .getRecentPhotos:
+        case .getRecentPhotos(let page):
             defaultParameters["method"] = "flickr.photos.getRecent"
+            defaultParameters["extras"] = "owner_name"
+            defaultParameters["page"] = "\(page)"
             return defaultParameters
         }
     }

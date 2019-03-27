@@ -33,6 +33,7 @@
 		FD6A0A37224A3F15004DBA48 /* ShowcaseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD6A0A35224A3F15004DBA48 /* ShowcaseCell.xib */; };
 		FD6A0A38224A3F15004DBA48 /* ShowcaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6A0A36224A3F15004DBA48 /* ShowcaseCell.swift */; };
 		FD6A0A3B224A3F52004DBA48 /* UIFont+Addition.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6A0A3A224A3F52004DBA48 /* UIFont+Addition.swift */; };
+		FD9B7962224C3041004931BA /* UICollectionView+ReachedBottom.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD9B7961224C3041004931BA /* UICollectionView+ReachedBottom.swift */; };
 		FDF3F78022491E1100B133CE /* PhotosResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5FD83C22490AA7007BCE69 /* PhotosResponse.swift */; };
 /* End PBXBuildFile section */
 
@@ -90,6 +91,7 @@
 		FD6A0A35224A3F15004DBA48 /* ShowcaseCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShowcaseCell.xib; sourceTree = "<group>"; };
 		FD6A0A36224A3F15004DBA48 /* ShowcaseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowcaseCell.swift; sourceTree = "<group>"; };
 		FD6A0A3A224A3F52004DBA48 /* UIFont+Addition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Addition.swift"; sourceTree = "<group>"; };
+		FD9B7961224C3041004931BA /* UICollectionView+ReachedBottom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+ReachedBottom.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -286,6 +288,7 @@
 			isa = PBXGroup;
 			children = (
 				FD6A0A3A224A3F52004DBA48 /* UIFont+Addition.swift */,
+				FD9B7961224C3041004931BA /* UICollectionView+ReachedBottom.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -626,6 +629,7 @@
 				FD66C873224A3B9400A0DCA6 /* HomeViewModel.swift in Sources */,
 				FD6A0A38224A3F15004DBA48 /* ShowcaseCell.swift in Sources */,
 				FD66C879224A3E4300A0DCA6 /* SpecialCell.swift in Sources */,
+				FD9B7962224C3041004931BA /* UICollectionView+ReachedBottom.swift in Sources */,
 				FD5FD8362248F7D1007BCE69 /* AppCoordinator.swift in Sources */,
 				FD6A0A3B224A3F52004DBA48 /* UIFont+Addition.swift in Sources */,
 				FD5FD83D22490AA7007BCE69 /* PhotosResponse.swift in Sources */,

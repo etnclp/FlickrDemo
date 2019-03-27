@@ -11,11 +11,13 @@ import RxSwift
 import RxCocoa
 
 protocol HomeViewModelInput {
-    
-    func getRecentPhotos() -> Observable<PhotosResponse>
+    var nextPageTrigger: PublishSubject<Void> { get }
 }
 
-protocol HomeViewModelOutput {}
+protocol HomeViewModelOutput {
+    var elements: BehaviorRelay<[Photo]> { get }
+    var error: PublishSubject<Swift.Error> { get }
+}
 
 protocol HomeViewModel {
     var input: HomeViewModelInput { get }

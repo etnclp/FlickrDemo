@@ -17,7 +17,7 @@ class HomeViewController: UIViewController, BindableType {
     
     var viewModel: HomeViewModel!
     
-    let disposeBag = DisposeBag()
+    private(set) var disposeBag = DisposeBag()
     
     // MARK: - IBOutlets
 
@@ -38,23 +38,60 @@ class HomeViewController: UIViewController, BindableType {
         collectionView.setCollectionViewLayout(flowLayout, animated: true)
     }
     
+    // MARK: - Binding
+    
     func bindViewModel() {
-        viewModel.input.getRecentPhotos()
-            .map { $0.photos.photo }
+        viewModel.output.elements
             .bind(to: collectionView.rx.items(cellType: ShowcaseCell.self))
             { (row, element, cell) in
+                cell.titleLabel.text = element.title
+                cell.userNameLabel.text = element.ownername
+                cell.imageView.contentMode = .scaleAspectFill
                 cell.imageView.kf.indicatorType = .activity
                 cell.imageView.kf.setImage(with: URL(string: element.imageURL), placeholder: UIImage())
+                
+                cell.imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.imageTapped)))
             }
             .disposed(by: disposeBag)
         
-        collectionView.rx.modelSelected(Photo.self)
-            .subscribe(onNext: { (element) in
-                
+        viewModel.output.error
+            .subscribe(onNext: { error in
+                log.error("Error: \(error)")
             })
             .disposed(by: disposeBag)
+        
+        collectionView.rx.reachedBottom
+            .bind(to: viewModel.input.nextPageTrigger)
+            .disposed(by: disposeBag)
+        
+        viewModel.input.nextPageTrigger.onNext(())
+    }
+    
+    // MARK: - Actions
+    
+    @objc private func imageTapped(_ sender: UITapGestureRecognizer) {
+        if let image = (sender.view as? UIImageView)?.image {
+            self.showFullscreenImage(image)
+        }
+    }
+    
+    private func showFullscreenImage(_ image: UIImage) {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissFullscreenImage))
+        let imageView = UIImageView(image: image)
+        
+        imageView.frame = UIScreen.main.bounds
+        imageView.backgroundColor = .black
+        imageView.contentMode = .scaleAspectFit
+        imageView.isUserInteractionEnabled = true
+        imageView.addGestureRecognizer(tap)
+        
+        view.addSubview(imageView)
+    }
+    
+    @objc private func dismissFullscreenImage(_ sender: UITapGestureRecognizer) {
+        sender.view?.removeFromSuperview()
     }
 
-
 }
+
 
